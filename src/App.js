@@ -2,11 +2,8 @@ import React, { Component } from "react";
 import Header from "./Header";
 import NotesList from "./NotesList";
 
-/* App component is the main component that holds the state of the application.
-   It contains the notes and the search text. It passes the notes and search text
-   to the NotesList component, which is responsible for rendering the list of notes.
-   The Header component is also rendered here.
-*/
+// The App component is the main component of the application.
+// It manages the state of the application, including the list of notes and the search text.
 class App extends Component {
 
   state = {
@@ -28,6 +25,12 @@ class App extends Component {
         title: "code",
         description: "build an awesome ui",
         doesMatchSearch: true
+      },
+      {
+        id: 3,
+        title: "repeat",
+        description: "do it all over again",
+        doesMatchSearch: true
       }
     ],
     searchText: "search"
@@ -35,11 +38,11 @@ class App extends Component {
   render () {
     return (
       <div>
-        <Header />
-        <NotesList />
+        <Header searchText={this.state.searchText} />
+        <NotesList notes={this.state.notes} />
       </div>
     );
   }
-};
+}
 
 export default App;

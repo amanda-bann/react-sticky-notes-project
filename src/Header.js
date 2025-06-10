@@ -1,6 +1,7 @@
 import React from "react";
 
-const Header = () => (
+// The Header component is a functional component that renders the header of the application.
+const Header = (props) => (
     <header>
       <h1 className="app-header__title">Super Sticky Notes</h1>
       <aside className="app-header__controls">
