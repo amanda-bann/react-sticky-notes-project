@@ -4,7 +4,7 @@ import React from 'react';
 // It takes props, which can include note data, and displays an input for the title,
 // a textarea for the description, and a delete button.
 const Note = (props) => {
-
+    console.log(props);
     const updateTitle = (e) => {
         const updatedValue = e.target.value;
         const editMeId =props.note.id;
@@ -17,6 +17,9 @@ const Note = (props) => {
         props.onType(editMeId, "description", updatedValue)
     };
 
+    const clickDelete = () => {
+        props.removeNote(props.note.id);
+    };
     return (
         <li className="note">
             {/* {console.log(props.note)} */}
@@ -33,10 +36,10 @@ const Note = (props) => {
                 value={props.note.description}
                 onChange={updateDescription}
             />
-            <span className="note__delete">X</span>
+            <span className="note__delete" onClick={clickDelete}>X</span>
         </li>
     );
 };
 
 export default Note;
-// This code defines a Note component for a sticky notes application.
+    // This code defines a Note component for a sticky notes application.

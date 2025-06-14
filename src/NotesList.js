@@ -13,7 +13,16 @@ const NotesList = (props) => {
   const keepSearchMatches = (note) => note.doesMatchSearch;
   const searchMatches = props.notes.filter(keepSearchMatches);
 
-  const renderNote = (note) => <Note onType={props.onType} note={note} key={note.id}/>;
+  const renderNote = (note) => (
+     <Note
+        removeNote={props.removeNote}
+        onType={props.onType}
+        note={note}
+        key={note.id}
+     />
+  );
+  // Map over the filtered notes to create an array of Note components
+  // Each Note component is passed the note object and a unique key based on the note's id.
   const noteElements = searchMatches.map(renderNote);
   return <ul className="notes-list">{noteElements}</ul>;
 };
