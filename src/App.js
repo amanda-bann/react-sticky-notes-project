@@ -15,7 +15,7 @@ class App extends Component {
       doesMatchSearch: true,
       }
     ],
-    searchText: "search"
+    searchText: ""
   };
 
   addNote = () => {
@@ -85,11 +85,32 @@ class App extends Component {
     });
   };
 
+  // The removeNote function will handle the deletion of a note.
+  // It will filter out the note with the given noteID from the notes array in State.
+  removeNote = (noteID) => {
+    const updatedNotes = this.state.notes.filter( note => note.id !== noteID);
+    this.setState({ notes: updatedNotes});
+  };
+
+  componentDidUpdate() {
+    const stringifiedNotes = JSON.stringify(this.state.notes);
+    localStorage.setItem("savedNotes", stringifiedNotes);
+  };
+
+  componentDidMount() {
+    const stringifiedNotes = localStorage.getItem("savedNotes");
+    if (stringifiedNotes) {
+      const savedNotes = JSON.parse(stringifiedNotes);
+      this.setState({ notes: savedNotes });
+    };
+  };
+  
+
   render () {
     return (
       <div>
         <Header onSearch={this.onSearch} addNote={this.addNote} searchText={this.state.searchText} />
-        <NotesList onType={this.onType} notes={this.state.notes} />
+        <NotesList removeNote={this.removeNote} onType={this.onType} notes={this.state.notes} />
       </div>
     );
   }
