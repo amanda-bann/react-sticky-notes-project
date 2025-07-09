@@ -1,2 +1,4 @@
 node_modules
 project-docs
+.DS_Store
+Thumbs.db
